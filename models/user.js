@@ -7,7 +7,7 @@ const passEntrySchema = new mongoose.Schema({
   website: { type: String, maxLength: 25, required: true },
   username: { type: String, maxLength: 25 },
   email: { type: String, maxLength: 25 },
-  password: { type: String, maxLength: 100, required: true },
+  password: { type: String, maxLength: 100, required: true }
 })
 
 const userSchema = new mongoose.Schema({
@@ -26,6 +26,8 @@ const userSchema = new mongoose.Schema({
     maxLength: 50,
   },
   passwordEntries: [passEntrySchema],
+  secret: { type: String, maxLength: 100 },
+  qrCodeUrl: { type: String, maxLength: 100 },
   resetPassToken: String,
   resetPassExpires: Date,
 })
