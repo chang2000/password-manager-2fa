@@ -1,32 +1,44 @@
-const jwtDecode = require('../utils/jwtDecode')
-const { errResponse } = require('../utils/Response')
-const User = require('../models/user')
+const jwtDecode = require("../utils/jwtDecode");
+const { errResponse } = require("../utils/Response");
+const User = require("../models/user");
 
+// This function is used to validate the user
 async function validate(req, res, next) {
-  let token
+  let token;
 
+  // Check if the token is in the request headers
   if (
-    req.headers.authorization
-    && req.headers.authorization.startsWith('Bearer')
-  )
-    token = req.headers.authorization.split(' ')[1]
+    req.headers.authorization &&
+    req.headers.authorization.startsWith("Bearer")
+  ) {
+    // If the token is in the headers, get the token
+    token = req.headers.authorization.split(" ")[1];
+  }
 
-  if (!token)
-    return errResponse(res, 400, 'Not Authorized to access this route')
+  if (!token) {
+    // If no token found, return an error
+    return errResponse(res, 400, "Not Authorized to access this route");
+  }
 
   try {
-    const decoded = jwtDecode(token)
-    const user = await User.findById(decoded.id)
+    // Decode the token
+    const decoded = jwtDecode(token);
 
-    if (!user)
-      return errResponse(res, 404, 'Unidentified User')
+    // Find the user by id
+    const user = await User.findById(decoded.id);
 
-    req.user = user
-    next()
-  }
-  catch (error) {
-    return errResponse(res, 401, 'Not Authorized to access this route')
+    if (!user) {
+      // If no user found, return an error
+      return errResponse(res, 404, "Unidentified User");
+    }
+
+    // Set the user in the request object
+    req.user = user;
+    next();
+  } catch (error) {
+    // If some error occured, return an error
+    return errResponse(res, 401, "Not Authorized to access this route");
   }
 }
 
-module.exports = validate
+module.exports = validate;

@@ -1,20 +1,23 @@
 // const crypto = require('node:crypto')
-const User = require('../models/user')
-const { successResponse, errResponse } = require('../utils/Response')
-const speakeasy = require('speakeasy')
+const User = require("../models/user");
+const { successResponse, errResponse } = require("../utils/Response");
+const speakeasy = require("speakeasy");
 
-// function to handle post rqst for registering a user
-
+// This function is used to test the route
 async function test(req, res) {
-  return successResponse(res, 200, 'test')
+  return successResponse(res, 200, "test");
 }
 
+// This function is used to register the user
 async function register(req, res) {
-  const { fName, lName, email, password } = req.body
-  const temp_secret = speakeasy.generateSecret()
+  // Get the first name, last name, email and password from the request body
+  const { fName, lName, email, password } = req.body;
+
+  // Generate a secret
+  const temp_secret = speakeasy.generateSecret();
 
   try {
-    // creating a user in db
+    // Create a new user
     await User.create({
       fName,
       lName,
@@ -23,81 +26,102 @@ async function register(req, res) {
       secret: temp_secret.base32,
       qrCodeUrl: temp_secret.otpauth_url,
     }).then(() => {
+      // If the user is created successfully
+      // Send the user a token
       return res.json({
         success: true,
         data: "User Created Successfully. Scan QR Code to verify.",
         email: email,
         secret: temp_secret.base32,
-        qrCodeUrl: temp_secret.otpauth_url,})
-    })
-
-    // handles error
+        qrCodeUrl: temp_secret.otpauth_url,
+      });
+    });
   } catch (err) {
-    // 11000 is error code for duplicate key in mongoDB
-    if (err.code == 11000)
-      return errResponse(res, 400, 'Please try again, Email Already exists.')
-    else
-      return errResponse(res, 500, err)
+    if (err.code == 11000) {
+      // If the key is duplicate
+      return errResponse(res, 400, "Please try again, Email Already exists.");
+    } else {
+      // If some other error
+      return errResponse(res, 500, err);
+    }
   }
 }
 
+// This function is used to login the user
 async function login(req, res) {
-  const { email, password } = req.body
+  // Get the email and password from the request body
+  const { email, password } = req.body;
 
   try {
-    // .select("+password") also returns the password
-    const user = await User.findOne({ email }).select('+password')
+    // Find the user by email and also get the password field
+    const user = await User.findOne({ email }).select("+password");
 
-    if (!user)
-      return errResponse(res, 401, 'Invalid Credentials')
-    
-    // checkPass is a mongoose method declared in users file of userSchema
-    const isMatch = await user.checkPass(password)
+    if (!user) {
+      // If no user found, return an error
+      return errResponse(res, 401, "Invalid Credentials");
+    }
 
-    if (!isMatch)
-      return errResponse(res, 401, 'Invalid Credentials')
-  
+    // Check if the password matches
+    const isMatch = await user.checkPass(password);
+
+    if (!isMatch) {
+      // If not match, return an error
+      return errResponse(res, 401, "Invalid Credentials");
+    }
+
     // returns authToken as response
-    return sendToken(user, 200, res)
+    return sendToken(user, 200, res);
   } catch (err) {
-    console.log(err)
+    console.log(err);
     // errResponse(res, 500, err);
   }
 }
 
+// This function is used to verify the token
 async function verify(req, res) {
-  const { email, token } = req.body
+  // Get the token from the request body
+  const { email, token } = req.body;
 
   try {
-    const user = await User.findOne({ email })
+    // Find the user by email
+    const user = await User.findOne({ email });
 
-    const secret = user.secret
+    // Get the secret from the user
+    const secret = user.secret;
 
+    // Verify the token
     const verified = speakeasy.totp.verify({
       secret,
-      encoding: 'base32',
+      encoding: "base32",
       token,
-    })
+    });
 
-    if (verified) { 
-      user.secret = user.secret
-      await user.save()
-      return successResponse(res, 200, 'Token Verified')
+    if (verified) {
+      // If the token is verified successfully
+      // Update the user to verified
+      user.secret = user.secret;
+      await user.save();
+      return successResponse(res, 200, "Token Verified");
     } else {
-      return errResponse(res, 400, 'Invalid Token')
+      // If the token is not verified
+      // Return an error
+      return errResponse(res, 400, "Invalid Token");
     }
   } catch (err) {
-    console.log(err)
+    console.log(err);
     errResponse(res, 500, err);
   }
 }
 
+// This function is used to send the token to the user
 function sendToken(user, statusCode, res) {
-  const token = user.getJwt()
+  // Create token
+  const token = user.getJwt();
+  // Send the token as response
   res.status(statusCode).json({
     success: true,
     token,
-  })
+  });
 }
 
-module.exports = { test, register, login, verify }
+module.exports = { test, register, login, verify };
