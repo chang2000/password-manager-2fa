@@ -1,10 +1,22 @@
 # Password Manager with 2FA
 
+## Introduction
 
+### Overview:
 
-Developed under Node 21
+This Password Manager with 2FA is a robust and secure web application built using the MERN stack (MongoDB, Express.js, React, and Node.js). It provides enhanced protection with Two-Factor Authentication (2FA). It offers users a highly secure and convenient platform to store and manage their passwords online.
 
-React + Express + MongoDB
+### Features
+
+* **Two-Factor Authentication**: Enhancing security, the application incorporates 2FA, requiring users to provide two different authentication factors to verify themselves. This significantly reduces the chances of unauthorized access.
+* **Secure Password Storage**: Users can add password entries to the manager. Each password is securely encrypted with a user-provided passkey, ensuring data protection and privacy.
+* **User-Friendly Interface**: Built with React, the application provides a responsive and intuitive user interface, making it easy for users to interact with their stored data.
+* **Backend Integration**: Utilizing Node.js and Express.js, the backend is optimized for performance, handling requests and data management swiftly. MongoDB is used for storing user data and password entries, offering scalability and flexibility in data handling.
+
+### Security
+
+* **Encryption**: The application uses advanced encryption techniques to safeguard user passwords. The encryption key is user-defined, adding an extra layer of security.
+* **Data Protection**: We prioritize user data protection, ensuring that all stored information is handled securely and confidentially.
 
 ## Instructions on Build
 
