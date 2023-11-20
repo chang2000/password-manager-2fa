@@ -8,7 +8,10 @@ function App() {
   return (
     <>
       <div className="password-manager">
-        <div className="header">Password Manager</div>
+        <header className="header-bar">
+          <h1 className="title">Password Manager</h1>
+          <button className="logout-button">Logout</button>
+        </header>
         <div className="password-form-container">
           <div className="form-header">Add Password</div>
           <div className="form-fields">
@@ -29,7 +32,7 @@ function App() {
               <tr>
                 <th>S.L</th>
                 <th>Website</th>
-                <th>Note</th>
+                <th>UserName</th>
                 <th>Email</th>
                 <th>Password</th>
                 <th>Action</th>
@@ -40,7 +43,37 @@ function App() {
               <tr>
                 <td>1</td>
                 <td>Facebook</td>
-                <td>My Personal Account</td>
+                <td>Bob</td>
+                <td>marifm1986@gmail.com</td>
+                <td>********</td>
+                <td>
+                  <button>X</button>
+                </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Facebook</td>
+                <td>Bob</td>
+                <td>marifm1986@gmail.com</td>
+                <td>********</td>
+                <td>
+                  <button>X</button>
+                </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Facebook</td>
+                <td>Bob</td>
+                <td>marifm1986@gmail.com</td>
+                <td>********</td>
+                <td>
+                  <button>X</button>
+                </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Facebook</td>
+                <td>Bob</td>
                 <td>marifm1986@gmail.com</td>
                 <td>********</td>
                 <td>
