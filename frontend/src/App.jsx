@@ -1,40 +1,106 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+
+// import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="password-manager">
+        <header className="header-bar">
+          <h1 className="title">Password Manager</h1>
+          <button className="logout-button">Logout</button>
+        </header>
+        <div className="password-form-container">
+          <div className="form-header">Add Password</div>
+          <div className="form-fields">
+            <input type="text" placeholder="Website" className="form-input" />
+            <input type="text" placeholder="UserName" className="form-input" />
+            <input type="text" placeholder="Email" className="form-input" />
+            <input
+              type="password"
+              placeholder="Password"
+              className="form-input"
+            />
+            <button className="form-button">Add</button>
+          </div>
+        </div>
+        <div className="password-list">
+          <table>
+            <thead>
+              <tr>
+                <th>S.L</th>
+                <th>Website</th>
+                <th>UserName</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* Repeat the row below for each password entry */}
+              <tr>
+                <td>1</td>
+                <td>Facebook</td>
+                <td>Bob</td>
+                <td>marifm1986@gmail.com</td>
+                <td>********</td>
+                <td>
+                  <button>X</button>
+                </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Facebook</td>
+                <td>Bob</td>
+                <td>marifm1986@gmail.com</td>
+                <td>********</td>
+                <td>
+                  <button>X</button>
+                </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Facebook</td>
+                <td>Bob</td>
+                <td>marifm1986@gmail.com</td>
+                <td>********</td>
+                <td>
+                  <button>X</button>
+                </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Facebook</td>
+                <td>Bob</td>
+                <td>marifm1986@gmail.com</td>
+                <td>********</td>
+                <td>
+                  <button>X</button>
+                </td>
+              </tr>
+              {/* ... */}
+            </tbody>
+          </table>
+        </div>
       </div>
-      <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => {
-          fetch('/api/auth/test').then(res => res.json()).then(data => {
-            console.log(data)
-            alert("Success: Check console for response")
-          })
-        }}>
+        <button
+          onClick={() => {
+            fetch("/api/auth/test")
+              .then((res) => res.json())
+              .then((data) => {
+                console.log(data);
+                alert("Success: Check console for response");
+              });
+          }}
+        >
           CLICK to test backend
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
