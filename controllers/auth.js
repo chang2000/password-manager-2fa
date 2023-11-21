@@ -24,6 +24,8 @@ async function register(req, res) {
       qrCodeUrl: temp_secret.otpauth_url,
     }).then(() => {
       return res.json({
+        success: true,
+        data: "User Created Successfully. Scan QR Code to verify.",
         email: email,
         secret: temp_secret.base32,
         qrCodeUrl: temp_secret.otpauth_url,})

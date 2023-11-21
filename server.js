@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3001;
 // app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
 // Host
-app.use(express.static(path.join(__dirname, 'frontend/dist')))
+// app.use(express.static(path.join(__dirname, 'frontend/dist')))
 
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/user", require("./routes/private"));
