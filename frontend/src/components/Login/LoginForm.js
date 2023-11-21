@@ -5,11 +5,10 @@ import {
   InputRightElement,
   Box,
   Heading,
-  Link
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { Link as Rlink } from "react-router-dom";
 
+// eslint-disable-next-line react/prop-types
 const LoginForm = ({ isSubmit }) => {
   const [input, setInput] = useState({
     email: "",
@@ -76,9 +75,6 @@ const LoginForm = ({ isSubmit }) => {
             Login
           </Button>
         </form>
-        <Box mt={{base:"1.5em"}}>
-        <Link color="blackAlpha.700" as={Rlink} to="/forgotpass"> Forgot Password? </Link>
-        </Box>
       </Box>
     </Box>
   );

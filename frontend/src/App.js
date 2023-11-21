@@ -1,7 +1,5 @@
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import ForgotPass from "./pages/ForgotPass";
-import ResetPass from "./pages/ResetPass";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 import PrivateRoute from "./Route/PrivateRouter";
@@ -28,8 +26,6 @@ function App() {
           }
         />
         <Route exact path="/register" element={<Register />} />
-        <Route exact path="/forgotpass" element={<ForgotPass />} />
-        <Route exact path="/resetpass/:resetToken" element={<ResetPass />} />
       </Routes>
     </BrowserRouter>
   );

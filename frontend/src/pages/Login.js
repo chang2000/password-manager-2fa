@@ -34,6 +34,7 @@ const Login = (props) => {
   };
 
   const navigateToUserPage = (success, token) => {
+    // eslint-disable-next-line react/prop-types
     props.loginRes({isLogged:success, authToken:token})
     navigate("/userpage")
   }
