@@ -16,9 +16,9 @@ app.use("/api/auth", require("./routes/auth"));
 app.use("/api/user", require("./routes/private"));
 
 // handle all other route
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "/frontend/dist/index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname + "/frontend/dist/index.html"));
+// });
 
 
 mongoose.connect(DB_URI).then(() => {
