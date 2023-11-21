@@ -83,6 +83,3 @@ CRYPTO_IV_HEX="600d015a1934939cbd925f35ebc75e59"
 > console.log('IV:', iv.toString('hex'));
 > ```
 
-For client side
-
-TBD
