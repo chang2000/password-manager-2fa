@@ -12,6 +12,7 @@ app.use(express.json());
 // Host
 // app.use(express.static(path.join(__dirname, 'frontend/dist')))
 
+// Routes
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/user", require("./routes/private"));
 
@@ -20,7 +21,7 @@ app.use("/api/user", require("./routes/private"));
 //   res.sendFile(path.join(__dirname + "/frontend/dist/index.html"));
 // });
 
-
+// Connect to MongoDB and start the server
 mongoose.connect(DB_URI).then(() => {
   app.listen(PORT, () => {
     console.log(`MongoDB Connection Established\nServer up and running on PORT:${PORT}`)
