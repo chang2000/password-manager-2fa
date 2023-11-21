@@ -48,6 +48,7 @@ const RegisterForm = (props) => {
         };
       });
     } else {
+      // eslint-disable-next-line react/prop-types
       props.isSubmit(input);
     }
   };

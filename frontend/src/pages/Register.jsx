@@ -1,5 +1,5 @@
-import Navbar from "../components/Navbar/Navbar";
-import RegisterForm from "../components/Register/RegisterForm";
+import Navbar from "../components/Navbar";
+import RegisterForm from "../components/RegisterForm";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";

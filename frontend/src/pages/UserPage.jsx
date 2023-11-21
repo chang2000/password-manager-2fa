@@ -1,8 +1,8 @@
 import { Flex } from "@chakra-ui/react";
-import PageTab from "../components/userPage/PageTab";
-import UserNav from "../components/userPage/UserNav";
+import PageTab from '../components/PageTab';
+import UserNav from "../components/UserNav";
 import { useState, useEffect } from "react";
-import PasskeyModal from "../components/userPage/PasskeyModal";
+import PasskeyModal from "../components/PasskeyModal";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 

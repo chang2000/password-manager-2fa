@@ -2,7 +2,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
-import PrivateRoute from "./Route/PrivateRouter";
+import PrivateRoute from "./components/PrivateRoute";
 import UserPage from "./pages/UserPage";
 
 function App() {

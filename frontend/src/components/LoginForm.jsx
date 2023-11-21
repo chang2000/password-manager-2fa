@@ -7,7 +7,6 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import { useState } from "react";
-
 // eslint-disable-next-line react/prop-types
 const LoginForm = ({ isSubmit }) => {
   const [input, setInput] = useState({

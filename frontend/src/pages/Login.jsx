@@ -1,7 +1,7 @@
-import LoginForm from "../components/Login/LoginForm";
+import LoginForm from "../components/LoginForm";
 import { Flex } from "@chakra-ui/react";
-import Navbar from "../components/Navbar/Navbar";
-import Feature from "../components/Login/Feature";
+import Navbar from "../components/Navbar";
+import Feature from "../components/Feature";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";

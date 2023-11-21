@@ -1,6 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 
 function PrivateRoute(props) {
+  // eslint-disable-next-line react/prop-types
   const { isLogged, authToken } = props.loginResponse;
   if (authToken && isLogged) {
     return <Outlet />;

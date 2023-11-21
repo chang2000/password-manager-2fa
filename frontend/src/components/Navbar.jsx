@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Box, Button, HStack, Icon, Spacer, Text } from "@chakra-ui/react";
 import KeyRoundedIcon from "@mui/icons-material/KeyRounded";
 import { useNavigate } from "react-router-dom";

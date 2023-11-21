@@ -1,10 +1,11 @@
-import React from "react";
+/* eslint-disable react/prop-types */
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { Text, Box, SimpleGrid, Icon, VStack, Button } from "@chakra-ui/react";
 
 const PasswordEntry = (props) => {
   return (
     <SimpleGrid columns={{base:1, md:"2", lg:"3"}} spacing={10}>
+
       {props.Passwords.map((password) => {
         return (
           <Box

@@ -2,7 +2,7 @@ import { HStack, Box, Text, Icon, Spacer, Button } from "@chakra-ui/react";
 import KeyRoundedIcon from "@mui/icons-material/KeyRounded";
 import { useNavigate } from "react-router-dom"
 
-const UserNav = (props) => {
+const UserNav = () => {
   const navigate = useNavigate();
 
   const logout = () => {
