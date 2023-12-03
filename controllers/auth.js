@@ -1,4 +1,5 @@
 // const crypto = require('node:crypto')
+const { response } = require("express");
 const User = require("../models/user");
 const { successResponse, errResponse } = require("../utils/Response");
 const speakeasy = require("speakeasy");
@@ -74,12 +75,23 @@ async function login(req, res) {
       // If not match, return an error
       return errResponse(res, 401, "Invalid Credentials");
     }
+    
+    if (!user.twoFACompleted) {
+      // Return 202 
+      res = {
+        success: true,
+        data: "2FA registration not completed",
+        email: email,
+        qrCodeUrl: user.qrCodeUrl,
+      }
+      return response(res, 202, "2FA registration not completed");
+    }
 
     // returns authToken as response
     return sendToken(user, 200, res);
   } catch (err) {
     console.log(err);
-    // errResponse(res, 500, err);
+    errResponse(res, 500, err);
   }
 }
 
