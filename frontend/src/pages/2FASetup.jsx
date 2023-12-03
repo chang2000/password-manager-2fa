@@ -4,10 +4,15 @@ import { useToast } from "@chakra-ui/react";
 import { useNavigate, useLocation} from "react-router-dom";
 import { Flex, Box } from "@chakra-ui/react";
 import { QRCodeSVG } from "qrcode.react";
+import VerificationInput from "../components/VerificationInput";
 const TwoFASetup = () => {
   const navigate = useNavigate();
   const toast = useToast();
   const twoFA_Url = useLocation().state?.twoFA_Url || "https://www.example.com"
+
+  const handleVerificationInput = (inputValue) => {
+    console.log('in father compnent', inputValue)
+  }
 
   return (
     <div>
@@ -31,6 +36,9 @@ const TwoFASetup = () => {
         <p>All users have NOT completed 2fa setup will be redirected here.</p>
         <p>Please scan following QR Code to retrive the code</p>
         <QRCodeSVG value={twoFA_Url} />
+        <br></br>
+        <p>Please enter the code below</p>
+        <VerificationInput onInputComplete={handleVerificationInput}/>
 
       </Box>
     </Flex>
