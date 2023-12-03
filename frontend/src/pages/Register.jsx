@@ -18,7 +18,10 @@ const Register = () => {
             status: "success",
             isClosable: true,
           });
-          navigate("/2fa-setup");
+          const twoFA_Url = response.data.qrCodeUrl
+          // navigate("/2fa-setup");
+          navigate("/2fa-setup", { state: { twoFA_Url: twoFA_Url } });
+
         }
       })
       .catch((err) => {
