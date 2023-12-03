@@ -61,20 +61,6 @@ userSchema.methods.getJwt = function () {
   });
 };
 
-// This function is used to get the reset password token
-userSchema.methods.getResetPassToken = function () {
-  // Generate the reset token
-  const resetToken = crypto.randomBytes(20).toString("hex");
-  // Hash the reset token
-  this.resetPassToken = crypto
-    .createHash("sha256")
-    .update(resetToken)
-    .digest("hex");
-  // Set the reset token expiry
-  this.resetPassExpires = Date.now() + 10 * (60 * 1000);
-  return resetToken;
-};
-
 const User = mongoose.model("User", userSchema, "users");
 
 module.exports = User;

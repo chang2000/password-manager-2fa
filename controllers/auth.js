@@ -78,13 +78,13 @@ async function login(req, res) {
     
     if (!user.twoFACompleted) {
       // Return 202 
-      res = {
+      message = {
         success: true,
         data: "2FA registration not completed",
         email: email,
         qrCodeUrl: user.qrCodeUrl,
       }
-      return response(res, 202, "2FA registration not completed");
+      return successResponse(res, 202, message);
     }
 
     // returns authToken as response
@@ -103,6 +103,7 @@ async function verify(req, res) {
   try {
     // Find the user by email
     const user = await User.findOne({ email });
+    const tokenUser = await User.findOne({ email }).select("+password");
 
     // Get the secret from the user
     const secret = user.secret;
@@ -120,7 +121,8 @@ async function verify(req, res) {
       user.secret = user.secret;
       user.twoFACompleted = true;
       await user.save();
-      return successResponse(res, 200, "Token Verified");
+      return sendToken(tokenUser, 200, res);
+      // return successResponse(res, 200, "Token Verified");
     } else {
       // If the token is not verified
       // Return an error

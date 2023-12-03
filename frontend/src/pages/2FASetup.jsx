@@ -5,7 +5,7 @@ import { useNavigate, useLocation} from "react-router-dom";
 import { Flex, Box } from "@chakra-ui/react";
 import { QRCodeSVG } from "qrcode.react";
 import VerificationInput from "../components/VerificationInput";
-const TwoFASetup = () => {
+const TwoFASetup = (props) => {
   const navigate = useNavigate();
   const toast = useToast();
 
@@ -17,16 +17,21 @@ const TwoFASetup = () => {
     axios
     .post('/api/auth/verify', {email: email, token: inputValue})
     .then((response) => {
-      const { success, data } = response.data;
+      const { success, token } = response.data;
       console.log(response.data)
       if (success) {
         toast({
-          title: data,
+          title: "2FA setup success",
           status: "success",
           isClosable: true,
         });
         console.log('success 2fa setup')
-        navigate("/");
+        sessionStorage.setItem("token", token);
+
+        // eslint-disable-next-line react/prop-types
+        props.loginRes({ isLogged: success, authToken: token });
+        navigate("/userpage");
+        // navigate("/");
       }
     })
     .catch((err) => {
@@ -67,7 +72,6 @@ const TwoFASetup = () => {
         <br></br>
         <p>Please enter the code below</p>
         <VerificationInput onInputComplete={handleVerificationInput}/>
-
       </Box>
     </Flex>
     </div>

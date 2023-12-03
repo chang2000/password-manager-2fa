@@ -1,16 +1,30 @@
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import PrivateRoute from "./components/PrivateRoute";
 import UserPage from "./pages/UserPage";
 import TwoFASetup from "./pages/2FASetup";
-
 function App() {
   const [loginResponse, setLoginResponse] = useState({
-    isLogged: false,
-    authToken: "",
+      // isLogged: false,
+      // authToken: "",
+      authToken: sessionStorage.getItem("token"),
+      isLogged: sessionStorage.getItem("token") ? true : false
   });
+    
+  useEffect(() => {
+    // Check if there's a token in sessionStorage
+    const token = sessionStorage.getItem("token");
+    if (token) {
+      // If token exists, set user as logged in
+      setLoginResponse({
+        isLogged: true,
+        authToken: token,
+      });
+    }
+    
+  }, []);
   return (
     <BrowserRouter>
       <Routes>
@@ -22,12 +36,18 @@ function App() {
           path="/"
           element={
             <Login
-              loginRes={(responseObject) => setLoginResponse(responseObject)}
+              loginRes={(responseObject) => {
+                setLoginResponse(responseObject)
+              }}
             />
           }
         />
         <Route exact path="/register" element={<Register />} />
-        <Route exact path="/2fa-setup" element={<TwoFASetup />} />
+        <Route exact path="/2fa-setup" element={<TwoFASetup 
+        loginRes={(responseObject) => {
+          setLoginResponse(responseObject)
+        }}
+        />} />
       </Routes>
     </BrowserRouter>
   );
