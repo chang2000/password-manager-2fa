@@ -15,8 +15,8 @@ async function register(req, res) {
 
   // Generate a secret with the name and issuer
   const temp_secret = speakeasy.generateSecret({
-    name: "Password Manager 2FA Grp 8",
-    issuer: "Group 8 NU CS6760 23Fall",
+    name: "PasswordManager2FA",
+    issuer: "Grp8",
   });
 
   try {
@@ -28,6 +28,7 @@ async function register(req, res) {
       password,
       secret: temp_secret.base32,
       qrCodeUrl: temp_secret.otpauth_url,
+      twoFACompleted: false,
     }).then(() => {
       // If the user is created successfully
       // Send the user a token
@@ -35,8 +36,9 @@ async function register(req, res) {
         success: true,
         data: "User Created Successfully. Scan QR Code to verify.",
         email: email,
-        secret: temp_secret.base32,
+        // secret: temp_secret.base32,
         qrCodeUrl: temp_secret.otpauth_url,
+        twoFACompleted: false,
       });
     });
   } catch (err) {
@@ -45,6 +47,7 @@ async function register(req, res) {
       return errResponse(res, 400, "Please try again, Email Already exists.");
     } else {
       // If some other error
+      console.log(err);
       return errResponse(res, 500, err);
     }
   }
@@ -103,6 +106,7 @@ async function verify(req, res) {
       // If the token is verified successfully
       // Update the user to verified
       user.secret = user.secret;
+      user.twoFACompleted = true;
       await user.save();
       return successResponse(res, 200, "Token Verified");
     } else {

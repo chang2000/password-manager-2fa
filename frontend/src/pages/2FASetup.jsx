@@ -8,10 +8,38 @@ import VerificationInput from "../components/VerificationInput";
 const TwoFASetup = () => {
   const navigate = useNavigate();
   const toast = useToast();
+
   const twoFA_Url = useLocation().state?.twoFA_Url || "https://www.example.com"
+  const email = useLocation().state?.email || ""
 
   const handleVerificationInput = (inputValue) => {
     console.log('in father compnent', inputValue)
+    axios
+    .post('/api/auth/verify', {email: email, token: inputValue})
+    .then((response) => {
+      const { success, data } = response.data;
+      console.log(response.data)
+      if (success) {
+        toast({
+          title: data,
+          status: "success",
+          isClosable: true,
+        });
+        console.log('success 2fa setup')
+        navigate("/");
+      }
+    })
+    .catch((err) => {
+      const { success, error } = err.response.data;
+      if (!success) {
+        toast({
+          title: error,
+          status: "error",
+          isClosable: true,
+        });
+      }
+    }
+    )
   }
 
   return (

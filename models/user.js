@@ -30,6 +30,7 @@ const userSchema = new mongoose.Schema({
   passwordEntries: [passEntrySchema],
   secret: { type: String, maxLength: 100 },
   qrCodeUrl: { type: String, maxLength: 100 },
+  twoFACompleted: { type: Boolean, default: false },
   resetPassToken: String,
   resetPassExpires: Date,
 });

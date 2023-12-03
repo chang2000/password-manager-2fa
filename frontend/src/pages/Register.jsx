@@ -19,8 +19,10 @@ const Register = () => {
             isClosable: true,
           });
           const twoFA_Url = response.data.qrCodeUrl
-          // navigate("/2fa-setup");
-          navigate("/2fa-setup", { state: { twoFA_Url: twoFA_Url } });
+          navigate("/2fa-setup", { state: { 
+            email: userInfo.email,
+            twoFA_Url: twoFA_Url 
+          } });
 
         }
       })
