@@ -13,8 +13,11 @@ async function register(req, res) {
   // Get the first name, last name, email and password from the request body
   const { fName, lName, email, password } = req.body;
 
-  // Generate a secret
-  const temp_secret = speakeasy.generateSecret();
+  // Generate a secret with the name and issuer
+  const temp_secret = speakeasy.generateSecret({
+    name: "Password Manager 2FA Grp 8",
+    issuer: "Group 8 NU CS6760 23Fall",
+  });
 
   try {
     // Create a new user
