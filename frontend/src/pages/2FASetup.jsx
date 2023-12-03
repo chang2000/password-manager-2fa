@@ -3,7 +3,7 @@ import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { Flex, Box } from "@chakra-ui/react";
-
+import { QRCodeSVG } from "qrcode.react";
 const TwoFASetup = () => {
   const navigate = useNavigate();
   const toast = useToast();
@@ -30,6 +30,8 @@ const TwoFASetup = () => {
         <p>All users have NOT completed 2fa setup will be redirected here.</p>
         <p>Please scan following QR Code to retrive the code</p>
         {/* Image here */}
+        <QRCodeSVG value="https://www.example.com" />
+
 
       </Box>
     </Flex>
