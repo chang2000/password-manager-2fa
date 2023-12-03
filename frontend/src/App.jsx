@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 import PrivateRoute from "./components/PrivateRoute";
 import UserPage from "./pages/UserPage";
+import TwoFASetup from "./pages/2FASetup";
 
 function App() {
   const [loginResponse, setLoginResponse] = useState({
@@ -26,6 +27,7 @@ function App() {
           }
         />
         <Route exact path="/register" element={<Register />} />
+        <Route exact path="/2fa-setup" element={<TwoFASetup />} />
       </Routes>
     </BrowserRouter>
   );

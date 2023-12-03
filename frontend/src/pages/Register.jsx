@@ -18,8 +18,7 @@ const Register = () => {
             status: "success",
             isClosable: true,
           });
-          console.log('enter here')
-          navigate("/");
+          navigate("/2fa-setup");
         }
       })
       .catch((err) => {

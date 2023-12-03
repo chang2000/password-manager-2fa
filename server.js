@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, 'frontend/dist')))
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/user", require("./routes/private"));
 
-// handle all other route
+// Redirect all other routes to frontend
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname + "/frontend/dist/index.html"));
 });

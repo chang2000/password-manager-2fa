@@ -17,7 +17,7 @@ const Login = (props) => {
         const { success, token } = response.data;
         if (success) {
           window.sessionStorage.setItem("token", token)
-          navigateToUserPage(success,token)
+          navigateToUserPage(success, token)
         }
       })
       .catch((err) => {
