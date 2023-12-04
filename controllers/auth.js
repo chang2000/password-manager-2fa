@@ -87,8 +87,16 @@ async function login(req, res) {
       return successResponse(res, 202, message);
     }
 
+    // If 2fa complete
+    message = {
+      success: true,
+      data: "2FA registration completed",
+      email: email,
+    }
+    return successResponse(res, 200, message);
+
     // returns authToken as response
-    return sendToken(user, 200, res);
+    // return sendToken(user, 200, res);
   } catch (err) {
     console.log(err);
     errResponse(res, 500, err);

@@ -6,7 +6,7 @@ import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
-const Login = (props) => {
+const Login = () => {
   const toast = useToast();
   const navigate = useNavigate();
   const isSubmitted = async (loginVal) => {
@@ -32,11 +32,17 @@ const Login = (props) => {
             },
           });
         } else if (response.status === 200) {
-          const { success, token } = response.data;
-          if (success) {
-            window.sessionStorage.setItem("token", token);
-            navigateToUserPage(success, token);
-          }
+          // const { success, token } = response.data;
+          const email = response.data.data.email;
+          navigate("/2fa-verify", {
+            state: {
+              email: email,
+            },
+          });
+          // if (success) {
+            // window.sessionStorage.setItem("token", token);
+            // navigateToUserPage(success, token);
+          // }
         }
       })
       .catch((err) => {
@@ -52,11 +58,11 @@ const Login = (props) => {
       });
   };
 
-  const navigateToUserPage = (success, token) => {
-    // eslint-disable-next-line react/prop-types
-    props.loginRes({ isLogged: success, authToken: token });
-    navigate("/userpage");
-  };
+  // const navigateToUserPage = (success, token) => {
+  //   // eslint-disable-next-line react/prop-types
+  //   props.loginRes({ isLogged: success, authToken: token });
+  //   navigate("/userpage");
+  // };
   return (
     <div>
       <Flex
