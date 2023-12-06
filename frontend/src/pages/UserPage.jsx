@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import PasskeyModal from "../components/PasskeyModal";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import InactivityLogout from '../components/InactivityLogout';
 
 const UserPage = () => {
   const navigate = useNavigate();
@@ -42,6 +43,7 @@ const UserPage = () => {
 
   return (
     <div>
+      <InactivityLogout />
       <UserNav fName={fName} />
       {!hasPasskey ? (
         <PasskeyModal passkeyFunc={passkeyFunc} passkeyVal={hasPasskey} />
