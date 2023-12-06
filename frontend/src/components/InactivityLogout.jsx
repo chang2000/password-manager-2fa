@@ -30,8 +30,9 @@ const InactivityLogout = () => {
     };
 
     useEffect(() => {
-        // Set up event listener for keyboard activity
+        // Set up event listeners for keyboard and mouse activity
         window.addEventListener('keydown', resetTimer);
+        window.addEventListener('click', resetTimer);
 
         // Initialize the timers
         resetTimer();
@@ -39,6 +40,7 @@ const InactivityLogout = () => {
         // Clean up
         return () => {
             window.removeEventListener('keydown', resetTimer);
+            window.removeEventListener('click', resetTimer);
             clearTimeout(inactiveTimer);
             clearTimeout(warningTimer);
         };
