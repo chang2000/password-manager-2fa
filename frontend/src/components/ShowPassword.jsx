@@ -27,7 +27,7 @@ const ShowPassword = ({ hasPasskey, passwords, getPasswords }) => {
   };
 
   useEffect(() => {
-    if (hasPasskey) {
+    if (window.sessionStorage.getItem("passkey")) {
       getPasswords();
     }
   }, [hasPasskey]);
