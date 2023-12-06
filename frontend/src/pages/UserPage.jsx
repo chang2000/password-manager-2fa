@@ -8,8 +8,9 @@ import { useNavigate } from "react-router-dom";
 
 const UserPage = () => {
   const navigate = useNavigate();
-  const [isPasskey, setIsPasskey] = useState(false);
+  const [hasPasskey, setHasPasskey] = useState(false);
   const [fName, setFname] = useState("");
+
   useEffect(() => {
     axios.defaults.headers.common[
       "Authorization"
@@ -33,17 +34,17 @@ const UserPage = () => {
 
   const passkeyFunc = (passkey) => {
     window.sessionStorage.setItem("passkey", passkey);
-    setIsPasskey(true);
+    setHasPasskey(true);
   };
 
   return (
     <div>
       <UserNav fName={fName} />
-      {!isPasskey ? (
-        <PasskeyModal passkeyFunc={passkeyFunc} passkeyVal={isPasskey} />
+      {!hasPasskey ? (
+        <PasskeyModal passkeyFunc={passkeyFunc} passkeyVal={hasPasskey} />
       ) : null}
       <Flex backgroundColor="blackAlpha.50" minHeight={"100vh"} maxHeight={"100%"} justify="center" pb={"3em"}>
-        <PageTab />
+        <PageTab hasPasskey={hasPasskey}/>
       </Flex>
     </div>
   );
