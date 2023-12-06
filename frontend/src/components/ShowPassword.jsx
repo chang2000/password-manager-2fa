@@ -27,10 +27,10 @@ const ShowPassword = ({ hasPasskey, passwords, getPasswords }) => {
   };
 
   useEffect(() => {
-    if (window.sessionStorage.getItem("passkey")) {
+    if (hasPasskey) {
       getPasswords();
     }
-  }, [hasPasskey]);
+  }, [hasPasskey, getPasswords]);
 
   return (
     <div>

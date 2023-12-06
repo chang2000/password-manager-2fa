@@ -31,6 +31,9 @@ const UserPage = () => {
       });
   }, []);
 
+  useEffect(() => {
+    setHasPasskey(window.sessionStorage.getItem("passkey"));
+  }, []);
 
   const passkeyFunc = (passkey) => {
     window.sessionStorage.setItem("passkey", passkey);
