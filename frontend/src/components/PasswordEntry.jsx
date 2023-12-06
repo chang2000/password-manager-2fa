@@ -4,7 +4,12 @@ import { Text, Box, SimpleGrid, Icon, VStack, Button } from "@chakra-ui/react";
 
 const PasswordEntry = (props) => {
   return (
-    <SimpleGrid columns={{ base: 1, md: "2", lg: "3" }} spacing={10} mt="2em">
+    <SimpleGrid
+      columns={{ base: 1, md: "2", lg: "3" }}
+      spacing={10}
+      mt="2em"
+      maxW={{ base: "20em", md: "100%" }}
+    >
       {props.passwords.map((password) => {
         return (
           <Box
@@ -15,7 +20,7 @@ const PasswordEntry = (props) => {
             textAlign="left"
             p="2em"
           >
-            <VStack alignItems={"left"} display="flex" direction={"column"} >
+            <VStack alignItems={"left"} display="flex" direction={"column"}>
               <Text>
                 <Text as={"span"} color="blackAlpha.700">
                   Website:&nbsp;
