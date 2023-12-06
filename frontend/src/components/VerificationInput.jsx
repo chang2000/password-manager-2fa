@@ -1,9 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
-import { Input, Button, HStack } from '@chakra-ui/react';
+import { useState, useEffect, useRef } from "react";
+import { Input, Button, HStack, VStack } from "@chakra-ui/react";
 
 // eslint-disable-next-line react/prop-types
 function VerificationInput({ onInputComplete }) {
-  const [digits, setDigits] = useState(Array(6).fill(''));
+  const [digits, setDigits] = useState(Array(6).fill(""));
   const inputRefs = useRef([]);
 
   useEffect(() => {
@@ -25,27 +25,31 @@ function VerificationInput({ onInputComplete }) {
   };
 
   const handleKeyDown = (event, index) => {
-    if (event.key === 'Backspace' && index > 0 && !digits[index]) {
+    if (event.key === "Backspace" && index > 0 && !digits[index]) {
       inputRefs.current[index - 1].focus();
-    } else if (event.key === 'Enter' && index === 5 && digits.join('').length === 6) {
+    } else if (
+      event.key === "Enter" &&
+      index === 5 &&
+      digits.join("").length === 6
+    ) {
       handleSubmit();
     }
-  }
+  };
 
   const handleSubmit = () => {
-    const verificationCode = digits.join('');
+    const verificationCode = digits.join("");
     if (onInputComplete) {
       onInputComplete(verificationCode);
     }
   };
 
   return (
-    <div>
+    <VStack display="flex" flexDirection="column" gap="1.5em">
       <HStack>
         {digits.map((digit, index) => (
           <Input
             key={index}
-            ref={el => inputRefs.current[index] = el}
+            ref={(el) => (inputRefs.current[index] = el)}
             id={`digit-${index}`}
             value={digit}
             onChange={(e) => handleChange(e, index)}
@@ -53,15 +57,16 @@ function VerificationInput({ onInputComplete }) {
             maxLength={1}
             size="lg"
             textAlign="center"
-            borderColor={'black'}
+            borderColor={"black"}
             borderWidth="2px"
+            w="3em"
           />
         ))}
       </HStack>
       <Button onClick={handleSubmit} mt={4} colorScheme="blue">
         Submit
       </Button>
-    </div>
+    </VStack>
   );
 }
 

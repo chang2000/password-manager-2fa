@@ -1,17 +1,20 @@
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import AddPassword from "./AddPassword";
 import ShowPassword from "./ShowPassword";
+
 const PageTab = () => {
   return (
     <Tabs
-      mt={{ base: "5em" }}
-      w={{base:"95%", sm:"90%", md:"80%", lg:"70%", xl:"60%"}}
+      mt={{ base: "10em" }}
+      maxW="55em"
+      w="100%"
+      mx={{ base: "2em", md: "4em" }}
       align="center"
       isFitted
       variant="solid-rounded"
       colorScheme="blackAlpha"
     >
-      <TabList mb="1em">
+      <TabList mb="1em" maxW="20em">
         <Tab>Add Password</Tab>
         <Tab>Show Passwords</Tab>
       </TabList>
