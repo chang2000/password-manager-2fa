@@ -5,6 +5,7 @@ import { useToast } from '@chakra-ui/react';
 const InactivityLogout = () => {
     const [inactiveTimer, setInactiveTimer] = useState(null);
     const [warningTimer, setWarningTimer] = useState(null);
+    const [warningShown, setWarningShown] = useState(false);
     const navigate = useNavigate();
     const toast = useToast();
 
@@ -13,18 +14,22 @@ const InactivityLogout = () => {
     };
 
     const showWarning = () => {
-        toast({
-            title: 'Inactivity detected',
-            description: 'You will be logged out in 5 seconds due to inactivity',
-            status: 'warning',
-            duration: 5000,
-            isClosable: true,
-        });
+        if (!warningShown) {
+            setWarningShown(true);
+            toast({
+                title: 'Inactivity detected',
+                description: 'You will be logged out in 5 seconds due to inactivity',
+                status: 'warning',
+                duration: 5000,
+                isClosable: true,
+            });
+        }
     };
 
     const resetTimer = () => {
         clearTimeout(inactiveTimer);
         clearTimeout(warningTimer);
+        setWarningShown(false); // Reset the warning shown status
         setWarningTimer(setTimeout(showWarning, 25000)); // Show warning after 25 seconds
         setInactiveTimer(setTimeout(logoutUser, 30000)); // Logout after 30 seconds
     };
@@ -46,7 +51,7 @@ const InactivityLogout = () => {
         };
     }, []);
 
-    return null; 
+    return null;
 };
 
 export default InactivityLogout;
