@@ -36,7 +36,7 @@ const AddPassword = ({ getPasswords }) => {
     if (!passkey) {
       toast({
         title: "Passkey Not Found",
-        description: "Please Refresh the Page and Provide a Passkey",
+        description: "Please refresh the page and provide a passkey",
         status: "warning",
         isClosable: true,
       });
