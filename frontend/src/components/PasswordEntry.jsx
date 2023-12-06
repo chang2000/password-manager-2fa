@@ -5,10 +5,10 @@ import { Text, Box, SimpleGrid, Icon, VStack, Button } from "@chakra-ui/react";
 const PasswordEntry = (props) => {
   return (
     <SimpleGrid
-      columns={{ base: 1, md: "2", lg: "3" }}
+      columns={{ base: 1, md: 2, lg: 3 }}
       spacing={10}
       mt="2em"
-      maxW={{ base: "20em", md: "100%" }}
+      maxW={{ base: "100%", sm: "20em", md: "100%" }}
     >
       {props.passwords.map((password) => {
         return (
