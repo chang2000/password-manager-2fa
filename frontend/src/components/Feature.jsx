@@ -1,25 +1,50 @@
-import { Box, VStack, Text, Icon } from "@chakra-ui/react";
+import { Box, VStack, Text, Icon, HStack } from "@chakra-ui/react";
 import DoneIcon from "@mui/icons-material/Done";
 
-
 const Feature = () => {
-  const fontsizes = {base:"xl", md:"2xl", lg:"3xl"}
+  const fontsizes = { base: "md", md: "xl", lg: "2xl" };
+
   return (
-    <Box w={{md:"50%"}}>
-      <VStack mt={{base:"7em",lg:"60%", xl:"20%"}} alignItems="left" pl={{base:"1.2em", xl:"2em"}} w={{base:"100%"}} >
-      
-        <Text as="span" color="blackAlpha.700" fontSize={fontsizes}>
+    <Box w={{ md: "50%" }}>
+      <VStack
+        alignItems="left"
+        pl={{ base: "0", lg: "2em", xl: "4em" }}
+        w={{ base: "100%" }}
+        justifyContent="center"
+      >
+        <HStack>
           <Icon as={DoneIcon} />
-          &nbsp; Save all of your Passwords in one place.
-        </Text>
-        <Text as="span" color="blackAlpha.700" fontSize={fontsizes}>
+          <Text
+            as="span"
+            color="blackAlpha.700"
+            fontSize={fontsizes}
+            whiteSpace="nowrap"
+          >
+            Save all of your Passwords in one place.
+          </Text>
+        </HStack>
+        <HStack>
           <Icon as={DoneIcon} />
-          &nbsp; Keeps Your Passwords Safe.
-        </Text>
-        <Text as="span" color="blackAlpha.700" fontSize={fontsizes}>
+          <Text
+            as="span"
+            color="blackAlpha.700"
+            fontSize={fontsizes}
+            whiteSpace="nowrap"
+          >
+            Keeps Your Passwords Safe.
+          </Text>
+        </HStack>
+        <HStack>
           <Icon as={DoneIcon} />
-          &nbsp; Cannot be decrypted without your passkey.
-        </Text>
+          <Text
+            as="span"
+            color="blackAlpha.700"
+            fontSize={fontsizes}
+            whiteSpace="nowrap"
+          >
+            Cannot be decrypted without your passkey.
+          </Text>
+        </HStack>
       </VStack>
     </Box>
   );

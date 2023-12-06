@@ -5,7 +5,7 @@ import PasswordEntry from "./PasswordEntry";
 
 const ShowPassword = () => {
   const [havePasswords, setHavePasswords] = useState(false);
-  const [Passwords, setPasswords] = useState();
+  const [passwords, setPasswords] = useState();
   const toast = useToast();
   const getPasswords = async () => {
     const passkey = window.sessionStorage.getItem("passkey");
@@ -56,7 +56,7 @@ const ShowPassword = () => {
         Get Passwords
       </Button>
       {havePasswords && (
-        <PasswordEntry Passwords={Passwords} deleteButton={deleteEntry} />
+        <PasswordEntry passwords={passwords} deleteButton={deleteEntry} />
       )}
     </div>
   );

@@ -4,13 +4,10 @@ import { Text, Box, SimpleGrid, Icon, VStack, Button } from "@chakra-ui/react";
 
 const PasswordEntry = (props) => {
   return (
-    <SimpleGrid columns={{base:1, md:"2", lg:"3"}} spacing={10}>
-
-      {props.Passwords.map((password) => {
+    <SimpleGrid columns={{ base: 1, md: "2", lg: "3" }} spacing={10} mt="2em">
+      {props.passwords.map((password) => {
         return (
           <Box
-            mt={"2.5em"}
-            mb={"-1.5em"}
             key={password._id}
             backgroundColor="white"
             borderRadius={"1em"}
@@ -18,7 +15,7 @@ const PasswordEntry = (props) => {
             textAlign="left"
             p="2em"
           >
-            <VStack alignItems={"left"} display="flex" direction={"column"}>
+            <VStack alignItems={"left"} display="flex" direction={"column"} >
               <Text>
                 <Text as={"span"} color="blackAlpha.700">
                   Website:&nbsp;
@@ -47,6 +44,7 @@ const PasswordEntry = (props) => {
                 onClick={() => {
                   props.deleteButton(password._id);
                 }}
+                mt="0.5em"
               >
                 <Icon as={DeleteOutlineIcon} />
               </Button>

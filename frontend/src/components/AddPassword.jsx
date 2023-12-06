@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
   Button,
   Input,
@@ -9,7 +10,7 @@ import {
 import { useState } from "react";
 import axios from "axios";
 
-const AddPassword = () => {
+const AddPassword = ({ getPasswords }) => {
   const toast = useToast();
   const [show, setShow] = useState(false);
   const [passInput, setPassInput] = useState({
@@ -47,7 +48,7 @@ const AddPassword = () => {
       "Authorization"
     ] = `Bearer ${window.sessionStorage.getItem("token")}`;
     axios
-      .put('/api/user/savePass', addPassInput)
+      .put("/api/user/savePass", addPassInput)
       .then((response) => {
         const { success, data } = response.data;
         if (success && data) {
@@ -62,6 +63,7 @@ const AddPassword = () => {
             email: "",
             password: "",
           });
+          getPasswords();
         }
       })
       .catch((error) => {
@@ -71,7 +73,7 @@ const AddPassword = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <VStack align="center">
+      <VStack align="center" maxW="20em">
         <Input
           onChange={handleChange}
           placeholder="Website"
@@ -107,7 +109,7 @@ const AddPassword = () => {
             </Button>
           </InputRightElement>
         </InputGroup>
-        <Button type="submit" colorScheme="messenger">
+        <Button type="submit" colorScheme="messenger" mt="1.5em">
           Submit
         </Button>
       </VStack>

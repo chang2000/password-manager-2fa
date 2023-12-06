@@ -40,9 +40,9 @@ const PasskeyModal = (props) => {
           <form onSubmit={handleSubmit}>
             <ModalBody>
               <Text>
-                Please Enter A Passkey, that would be used to encrypt your
-                passwords (Keep the Passkey same accross every session to avoid
-                loss of data)
+                Please enter a passkey, which would be used to encrypt your
+                passwords (Keep the Passkey same across every session to avoid
+                loss of data).
               </Text>
               <Input
                 placeholder="Passkey"
@@ -50,10 +50,11 @@ const PasskeyModal = (props) => {
                 onChange={(e) => setPasskey(e.target.value)}
                 required={true}
                 maxLength={20}
+                mt={5}
               />
             </ModalBody>
             <ModalFooter>
-              <Button type="submit" colorScheme="blue" mr={3} onClick={onClose}>
+              <Button type="submit" colorScheme="blue" onClick={onClose}>
                 Save
               </Button>
             </ModalFooter>

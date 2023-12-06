@@ -57,26 +57,29 @@ const RegisterForm = (props) => {
       h="100vh"
       direction="column"
       alignItems="center"
+      justifyContent="center"
       backgroundColor="blackAlpha.50"
     >
       <Box
-        mt={{ base: "15em", xl: "15em" }}
         backgroundColor="white"
         borderRadius="20px"
         w={{ base: "90%", md: "60%", xl: "40%" }}
-        p={{ base: "1.2em", xl: "4.2em" }}
+        p={{ base: "3em", md: "3.5em", xl: "4em" }}
         boxShadow="lg"
       >
         <form onSubmit={handleSubmit}>
           <Heading
             align="center"
-            fontSize={{ xl: "2xl" }}
+            fontSize={{ base: "xl", xl: "2xl" }}
             color="blackAlpha.700"
-            p={{ base: "1.1em" }}
           >
             Register Here
           </Heading>
-          <VStack spacing={5} alignItems="center" mt={{ xl: "3em" }}>
+          <VStack
+            spacing={5}
+            alignItems="center"
+            mt={{ base: "1.5em", md: "1.5em", xl: "2em" }}
+          >
             <Input
               placeholder="First Name"
               name="fName"
@@ -125,7 +128,11 @@ const RegisterForm = (props) => {
               maxLength={40}
               value={input.confirmPassword}
             />
-            <Button type="submit" colorScheme="messenger">
+            <Button
+              type="submit"
+              colorScheme="messenger"
+              mt={{ base: "0.25em", md: "0.5em", xl: "0.75em" }}
+            >
               Submit
             </Button>
           </VStack>

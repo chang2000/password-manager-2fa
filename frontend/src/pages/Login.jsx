@@ -40,8 +40,8 @@ const Login = () => {
             },
           });
           // if (success) {
-            // window.sessionStorage.setItem("token", token);
-            // navigateToUserPage(success, token);
+          // window.sessionStorage.setItem("token", token);
+          // navigateToUserPage(success, token);
           // }
         }
       })
@@ -72,8 +72,18 @@ const Login = () => {
         h={{ md: "100vh" }}
       >
         <Navbar btnName="Register" path="register" />
-        <Feature />
-        <LoginForm isSubmit={isSubmitted} />
+        <Flex
+          backgroundColor="blackAlpha.50"
+          alignItems="center"
+          justifyContent="center"
+          direction={{ base: "column-reverse", lg: "row" }}
+          w="100%"
+          h="100vh"
+          gap={{ base: "4em", lg: "0" }}
+        >
+          <Feature />
+          <LoginForm isSubmit={isSubmitted} />
+        </Flex>
       </Flex>
     </div>
   );
