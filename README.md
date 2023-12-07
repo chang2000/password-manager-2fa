@@ -9,22 +9,30 @@ This Password Manager with 2FA is a robust and secure web application built usin
 
 ### Features
 
-* **Two-Factor Authentication**: Enhancing security, the application incorporates 2FA, requiring users to provide two different authentication factors to verify themselves. This significantly reduces the chances of unauthorized access.
+* **Two-Factor Authentication**: Enhancing security, the application incorporates 2FA, requiring users to provide two different authentication factors to verify themselves. This significantly reduces the chances of unauthorized access. **We also implemented the OTP-based 2FA from sctrach to provide customization ability and independence of this project.**
 * **Secure Password Storage**: Users can add password entries to the manager. Each password is securely encrypted with a user-provided passkey, ensuring data protection and privacy.
 * **User-Friendly Interface**: Built with React, the application provides a responsive and intuitive user interface, making it easy for users to interact with their stored data.
 * **Backend Integration**: Utilizing Node.js and Express.js, the backend is optimized for performance, handling requests and data management swiftly. MongoDB is used for storing user data and password entries, offering scalability and flexibility in data handling.
 
 ### Security
 
-* **Encryption**: The application uses advanced encryption techniques to safeguard user passwords. The encryption key is user-defined, adding an extra layer of security.
-* **Data Protection**: We prioritize user data protection, ensuring that all stored information is handled securely and confidentially.
+* **Encryption**: The application uses advanced encryption techniques to safeguard user passwords. The encryption key is user-defined, adding an extra layer of security. 
+
+  * We're using **AES-256-CTR** for this project based on following reasons.
+    * **Security**: Compared to older or less secure encryption methods like DES (Data Encryption Standard) and 3DES, AES-256-CTR offers stronger resistance against known practical attacks, making it a robust choice for data protection.
+    * **Performance**: While RSA (Rivest-Shamir-Adleman) provides strong security, it's considerably slower, especially for large data. AES-256-CTR, on the other hand, is efficient and fast, ensuring the application maintains high performance even when processing large amounts of data.
+    * **Key Management**: Unlike symmetric encryption algorithms such as Blowfish, where key distribution can be challenging, the user-defined key management in AES-256-CTR decentralizes security, putting control in the user's hands. This approach enhances the security of the system by minimizing the risk of key compromise.
+
+* **Data Protection**: We prioritize user data protection, ensuring that all stored information is handled securely and confidentially. We cannot access user's passkey thus even us cannot acquire users' stored passwords.
+
+  ****
 
 ## Instructions on Build
 
 ### Requirement:
 
 - Node.js 21(preferred)
-- mongodb
+- MongoDB
 
 ### Steps:
 
@@ -62,8 +70,7 @@ export default defineConfig({
 For server side
 
 ```
-DB_URI="mongodb://localhost:27017"
-RESET_URL=""
+DB_URI="mongodb://localhost:27017/password-manager"
 JWT_SECRET="secret"
 JWT_EXPIRES="300000"
 CRYPTO_SECRET_KEY="bf01b27ee9a88d9fec8aeeb34c6928327d4c27ad904e6dc931ef48809f43b828"
