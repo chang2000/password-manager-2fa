@@ -45,7 +45,7 @@ describe('saveUserPassword', () => {
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
       success: true,
-      message: "Password Saved Successfully"
+      data: "Password Saved Successfully"
     });
   });
 });

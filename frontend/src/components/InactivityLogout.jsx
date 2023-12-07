@@ -10,6 +10,8 @@ const InactivityLogout = () => {
     const toast = useToast();
 
     const logoutUser = () => {
+        window.sessionStorage.removeItem('token');
+        window.sessionStorage.removeItem('passkey');
         navigate('/');
     };
 
