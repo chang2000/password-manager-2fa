@@ -6,11 +6,13 @@ import {
   TabPanels,
   Tabs,
   useToast,
+  Flex
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
 import AddPassword from "./AddPassword";
 import ShowPassword from "./ShowPassword";
+import ChatBox from "./ChatBox";
 
 const PageTab = ({ hasPasskey }) => {
   const [passwords, setPasswords] = useState([]);
@@ -39,36 +41,48 @@ const PageTab = ({ hasPasskey }) => {
         console.log(err);
       });
   };
-
   return (
-    <Tabs
-      mt={{ base: "10em" }}
-      maxW="55em"
+    <Flex
+      direction="row"
       w="100%"
-      mx={{ base: "2em", md: "4em" }}
-      align="center"
-      isFitted
-      variant="solid-rounded"
-      colorScheme="blackAlpha"
     >
-      <TabList mb="1em" maxW="20em">
-        <Tab>Add Password</Tab>
-        <Tab>Show Passwords</Tab>
-      </TabList>
-      <TabPanels>
-        <TabPanel>
-          <AddPassword getPasswords={getPasswords} />
-        </TabPanel>
-        <TabPanel>
-          <ShowPassword
-            hasPasskey={hasPasskey}
-            passwords={passwords}
-            getPasswords={getPasswords}
-          />
-        </TabPanel>
-      </TabPanels>
-    </Tabs>
+      <Flex
+        flex={1}
+        direction="column"
+        mt={{ base: "10em" }}
+        maxW="55em"
+        mx={{ base: "2em", md: "4em" }}
+      >
+        <Tabs
+          isFitted
+          variant="solid-rounded"
+          colorScheme="blackAlpha"
+        >
+          <TabList mb="1em" maxW="20em">
+            <Tab>Add Password</Tab>
+            <Tab>Show Passwords</Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel>
+              <AddPassword getPasswords={getPasswords} />
+            </TabPanel>
+            <TabPanel>
+              <ShowPassword
+                hasPasskey={hasPasskey}
+                passwords={passwords}
+                getPasswords={getPasswords}
+              />
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+      </Flex>
+      <Flex flex={1}>
+        <ChatBox />
+      </Flex>
+    </Flex>
   );
 };
+
+
 
 export default PageTab;

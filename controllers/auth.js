@@ -30,6 +30,7 @@ async function register(req, res) {
       secret: temp_secret.base32,
       qrCodeUrl: temp_secret.otpauth_url,
       twoFACompleted: false,
+      GPTVerified: false,
     }).then(() => {
       // If the user is created successfully
       // Send the user a token
