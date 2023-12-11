@@ -66,6 +66,7 @@ export default defineConfig({
 ```
 
 ###  2. Environment Variable Example
+**Attention: Following configuration is for demo purpose and please DO NOT USE in your production environment.**
 
 For server side
 
