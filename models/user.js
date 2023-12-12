@@ -31,6 +31,7 @@ const userSchema = new mongoose.Schema({
   secret: { type: String, maxLength: 100 },
   qrCodeUrl: { type: String, maxLength: 100 },
   twoFACompleted: { type: Boolean, default: false },
+  GPTVerified: { type: Boolean, default: false },
   resetPassToken: String,
   resetPassExpires: Date,
 });

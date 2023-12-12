@@ -1,8 +1,11 @@
+require("dotenv").config();
 const jwtDecode = require("../utils/jwtDecode");
 const { errResponse, successResponse } = require("../utils/Response");
 const User = require("../models/user");
 const { encrypt, decrypt } = require("../utils/Crypt");
+const {OpenAI} = require("openai")
 
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 // This function is used to test the route
 async function userPage(req, res) {
   // Get the user from the request object
@@ -119,4 +122,35 @@ async function delPassEntry(req, res) {
   }
 }
 
-module.exports = { userPage, saveUserPassword, getUserPassword, delPassEntry };
+async function chat(req, res) {
+  console.log("api key", OPENAI_API_KEY);
+  const uid = req.user._id;
+  const user = await User.findById(uid);
+  console.log(user)
+  if (!user.GPTVerified) {
+    console.log('not verified')
+    errResponse(res, 400, "Not GPT Verified. Please contact admin.");
+    return
+  }
+
+  const { message } = req.body;
+  
+  try {
+    const openai = new OpenAI({
+      apiKey: OPENAI_API_KEY, 
+    });
+    const chatCompletion = await openai.chat.completions.create({
+      messages: [{ role: 'user', content: `${message}` }],
+      model: 'gpt-3.5-turbo',
+    });
+    res.json({ message: chatCompletion.choices[0].message.content });
+    // res.json({message: "hello"})
+
+  } catch (error) {
+    console.error("Error calling OpenAI:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
+
+module.exports = { userPage, saveUserPassword, getUserPassword, delPassEntry, chat};

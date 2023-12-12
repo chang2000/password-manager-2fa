@@ -1,6 +1,9 @@
 # Password Manager with 2FA
 
 Online Demo: [password-manager-2fa-production.up.railway.app](https://password-manager-2fa-production.up.railway.app)
+
+> only for demo purpose, please do not store important data
+
 ## Introduction
 
 ### Overview:
@@ -68,10 +71,11 @@ export default defineConfig({
 ###  2. Environment Variable Example
 **Attention: Following configuration is for demo purpose and please DO NOT USE in your production environment.**
 
-For server side
+For server side, name it as `.env`
 
 ```
 DB_URI="mongodb://localhost:27017/password-manager"
+OPENAI_API_KEY="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 JWT_SECRET="secret"
 JWT_EXPIRES="300000"
 CRYPTO_SECRET_KEY="bf01b27ee9a88d9fec8aeeb34c6928327d4c27ad904e6dc931ef48809f43b828"
