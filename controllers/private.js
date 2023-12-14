@@ -134,6 +134,11 @@ async function chat(req, res) {
   }
 
   const { message } = req.body;
+
+  const prompt = `You are a NLP analyzer build-in password manager. If I send you message that contains the information or instruction to delete a password, please return in json format. The instruction is: ${message}: {
+    \"email\": ${user.email},
+    \"website"\: \"website url\",
+  }`;
   
   try {
     const openai = new OpenAI({
@@ -144,7 +149,6 @@ async function chat(req, res) {
       model: 'gpt-3.5-turbo',
     });
     res.json({ message: chatCompletion.choices[0].message.content });
-    // res.json({message: "hello"})
 
   } catch (error) {
     console.error("Error calling OpenAI:", error);

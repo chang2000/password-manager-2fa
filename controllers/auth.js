@@ -4,6 +4,11 @@ const User = require("../models/user");
 const { successResponse, errResponse } = require("../utils/Response");
 const speakeasy = require("speakeasy");
 
+require("dotenv").config();
+const { OpenAI } = require("openai")
+
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+
 // This function is used to test the route
 async function test(req, res) {
   return successResponse(res, 200, "test");
@@ -57,6 +62,7 @@ async function register(req, res) {
 
 // This function is used to login the user
 async function login(req, res) {
+  console.log("login");
   // Get the email and password from the request body
   const { email, password } = req.body;
 
