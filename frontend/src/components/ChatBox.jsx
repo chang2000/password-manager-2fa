@@ -46,51 +46,70 @@ const ChatBox = () => {
 
   // Color mode values for light and dark themes
   const bgColor = useColorModeValue("gray.100", "gray.700");
-  const userMessageColor = useColorModeValue("blue.100", "blue.300");
-  const botMessageColor = useColorModeValue("gray.200", "gray.500");
+  const userMessageColor = useColorModeValue("gray.200", "gray.500");
+  const botMessageColor = useColorModeValue("blue.100", "blue.300");
 
   return (
     <Box
       className="Chatbox"
       textAlign="center"
       bg={bgColor}
-      minHeight="30vh"
-      maxHeight="50vh"
-      py={4}
+      height="min-content"
+      width="100%"
+      minWidth="20em"
+      mt="9em"
+      mr="4em"
+      borderRadius="lg"
+      boxShadow={"md"}
+      display="flex"
+      flexDir="column"
     >
-      <Text fontSize="2xl" color="teal.500" p={4}>
+      <Text fontSize="lg" fontWeight="600" color="teal.500" p="4">
         GPT Chatbox
       </Text>
       <Box
         className="chatbox"
         bg="white"
         p={4}
-        borderRadius="lg"
         mx="auto"
-        maxWidth="600px"
         display="flex"
         flexDirection="column"
         justifyContent="space-between"
-        height="100%"
+        height="65vh"
+        width="100%"
+        borderBottomStartRadius="lg"
+        borderBottomEndRadius="lg"
       >
         <Box
           className="chatlog"
-          bg={bgColor}
-          borderRadius="md"
-          p={3}
           mb={4}
           overflowY="scroll"
-          maxHeight="400px"
+          display="flex"
+          flexDirection="column"
+          gap={2}
+          textAlign="start"
         >
           {messages.map((message, index) => (
             <Box
               key={index}
-              bg={message.sender === "You" ? userMessageColor : botMessageColor}
-              p={2}
-              borderRadius="md"
-              m={1}
+              display="flex"
+              justifyContent={message.sender === "You" ? "end" : "start"}
             >
-              <Text fontSize="md">{message.text}</Text>
+              <Box
+                bg={
+                  message.sender === "You" ? userMessageColor : botMessageColor
+                }
+                px={3}
+                py={2}
+                width="fit-content"
+                ml={message.sender === "You" ? 8 : 0}
+                mr={message.sender === "You" ? 0 : 8}
+                borderRadius="xl"
+                borderBottomStartRadius={message.sender === "You" ? "xl" : 0}
+                borderBottomEndRadius={message.sender === "You" ? 0 : "xl"}
+              >
+                <Text fontSize="md">{message.text}</Text>
+              </Box>
             </Box>
           ))}
           <div ref={messagesEndRef} />

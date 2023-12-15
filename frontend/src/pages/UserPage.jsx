@@ -48,7 +48,7 @@ const UserPage = () => {
       {!hasPasskey ? (
         <PasskeyModal passkeyFunc={passkeyFunc} passkeyVal={hasPasskey} />
       ) : null}
-      <Flex backgroundColor="blackAlpha.50" minHeight={"100vh"} maxHeight={"100%"} justify="center" pb={"3em"}>
+      <Flex backgroundColor="blackAlpha.50" minHeight={"100vh"} maxHeight={"100%"} justify="center">
         <PageTab hasPasskey={hasPasskey}/>
       </Flex>
     </div>

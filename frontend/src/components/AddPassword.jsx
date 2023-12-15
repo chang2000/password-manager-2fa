@@ -72,8 +72,11 @@ const AddPassword = ({ getPasswords }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <VStack align="center" maxW="20em">
+    <form
+      onSubmit={handleSubmit}
+      style={{ display: "flex", justifyContent: "center" }}
+    >
+      <VStack align="center" maxW="20em" w="100%" mt="1em">
         <Input
           onChange={handleChange}
           placeholder="Website"
