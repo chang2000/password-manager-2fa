@@ -79,7 +79,7 @@ const PageTab = ({ hasPasskey }) => {
         </Tabs>
       </Flex>
       <Flex flex={2}>
-        <ChatBox />
+        <ChatBox getPasswords={getPasswords} />
       </Flex>
     </Flex>
   );
