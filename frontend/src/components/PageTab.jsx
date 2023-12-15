@@ -6,7 +6,7 @@ import {
   TabPanels,
   Tabs,
   useToast,
-  Flex
+  Flex,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
@@ -42,27 +42,29 @@ const PageTab = ({ hasPasskey }) => {
       });
   };
   return (
-    <Flex
-      direction="row"
-      w="100%"
-    >
+    <Flex direction="row" w="100%">
       <Flex
-        flex={1}
+        flex={3}
         direction="column"
-        mt={{ base: "10em" }}
+        mt={{ base: "9em" }}
         maxW="55em"
-        mx={{ base: "2em", md: "4em" }}
+        mx={{ base: "1em", lg: "3em" }}
       >
         <Tabs
           isFitted
           variant="solid-rounded"
           colorScheme="blackAlpha"
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          flex={1}
+          maxHeight="calc(100vh - 10em)"
         >
           <TabList mb="1em" maxW="20em">
-            <Tab>Add Password</Tab>
-            <Tab>Show Passwords</Tab>
+            <Tab whiteSpace="nowrap">Add Password</Tab>
+            <Tab whiteSpace="nowrap">Show Passwords</Tab>
           </TabList>
-          <TabPanels>
+          <TabPanels flex={1} overflow="scroll">
             <TabPanel>
               <AddPassword getPasswords={getPasswords} />
             </TabPanel>
@@ -76,13 +78,11 @@ const PageTab = ({ hasPasskey }) => {
           </TabPanels>
         </Tabs>
       </Flex>
-      <Flex flex={1}>
+      <Flex flex={2}>
         <ChatBox />
       </Flex>
     </Flex>
   );
 };
-
-
 
 export default PageTab;
