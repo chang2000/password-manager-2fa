@@ -3,7 +3,7 @@ import { Box, Input, Button, Text, useColorModeValue } from "@chakra-ui/react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 
-const ChatBox = ({getPasswords}) => {
+const ChatBox = () => {
   const toast = useToast();
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
@@ -30,7 +30,6 @@ const ChatBox = ({getPasswords}) => {
           ...newMessages,
           { text: response.data.message, sender: "Bot" },
         ]);
-        getPasswords();
       })
       .catch((err) => {
         console.log(JSON.stringify(err));
