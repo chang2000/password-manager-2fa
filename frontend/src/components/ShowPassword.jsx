@@ -30,7 +30,7 @@ const ShowPassword = ({ hasPasskey, passwords, getPasswords }) => {
     if (hasPasskey) {
       getPasswords();
     }
-  }, [hasPasskey, getPasswords]);
+  }, [hasPasskey]);
 
   return (
     <div>
